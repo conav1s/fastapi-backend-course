@@ -1,0 +1,16 @@
+from typing import Iterable, Protocol
+
+from simple_backend.src.task_tracker.domain.models import Task
+
+class TaskRepo(Protocol):
+    def get_all(self) -> Iterable[Task]: ...
+
+    # raises: TaskNotFoundError
+    def get_by_id(self, task_id: int) -> Task: ...
+
+    def add(self, task: Task) -> None: ...
+
+    def update(self, task: Task) -> None: ...
+
+    # raises: TaskNotFoundError
+    def delete(self, task_id: int) -> Task: ...
