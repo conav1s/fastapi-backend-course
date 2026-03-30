@@ -1,19 +1,8 @@
 from fastapi import FastAPI
 
+from simple_backend.src.task_tracker.routers.task_storage_router import task_storage_router
+from simple_backend.src.task_tracker.register_handlers import register_storage_handlers
+
 app = FastAPI()
-
-@app.get("/tasks")
-def get_tasks():
-    pass
-
-@app.post("/tasks")
-def create_task(task):
-    pass
-
-@app.put("/tasks/{task_id}")
-def update_task(task_id: int):
-    pass
-
-@app.delete("/tasks/{task_id}")
-def delete_task(task_id: int):
-    pass
+app.include_router(task_storage_router)
+register_storage_handlers(app)
